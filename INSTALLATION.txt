@@ -1,4 +1,4 @@
-DiskScope 0.11.0
+DiskScope 0.12.0
 ================
 
 Installation
@@ -13,6 +13,7 @@ Installation
    Festplattenvollzugriff erlauben.
 
 Für die Installation wird kein Apple-Developer-Account benötigt.
+DiskScope benötigt macOS 12 Monterey oder neuer.
 
 Warum erscheint die Sicherheitsmeldung?
 ---------------------------------------
