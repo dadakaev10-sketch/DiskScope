@@ -1,0 +1,36 @@
+DiskScope 0.11.0
+================
+
+Installation
+------------
+1. DiskScope.app in den Ordner „Programme“ ziehen.
+2. DiskScope einmal öffnen.
+3. Falls macOS die App blockiert:
+   „Systemeinstellungen“ > „Datenschutz & Sicherheit“ öffnen,
+   nach unten zu „Sicherheit“ scrollen und „Dennoch öffnen“ wählen.
+4. DiskScope erneut öffnen.
+5. Für eine vollständige Analyse geschützter Ordner den einmaligen
+   Festplattenvollzugriff erlauben.
+
+Für die Installation wird kein Apple-Developer-Account benötigt.
+
+Warum erscheint die Sicherheitsmeldung?
+---------------------------------------
+Diese Open-Source-Version ist noch nicht mit einer Apple Developer ID signiert
+und notarisiert. macOS kann deshalb die Identität des Herausgebers nicht
+automatisch bestätigen. Lade DiskScope nur von der offiziellen GitHub-Seite:
+https://github.com/dadakaev10-sketch/DiskScope/releases
+
+Datenschutz und Sicherheit
+--------------------------
+- Die Analyse erfolgt vollständig lokal.
+- DiskScope stellt keine Netzwerkverbindung her.
+- Es wird nichts automatisch gelöscht.
+- Einzelne Einträge können nach einer Bestätigung in den Papierkorb verschoben werden.
+- Geschützte macOS-Ordner können ohne „Festplattenvollzugriff“ unvollständig erscheinen.
+
+Hinweis
+-------
+Die Anzeige „Auf SSD zugeordnet“ ist bei APFS-Klonen und gemeinsam genutzten
+Blöcken eine Schätzung. Die gesamte Laufwerksbelegung bleibt die verlässlichere
+Obergrenze.
