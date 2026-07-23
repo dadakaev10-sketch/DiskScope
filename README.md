@@ -5,10 +5,11 @@ Ordnergrößen.
 
 ## Download und Installation
 
-Die aktuelle DMG steht unter
-[GitHub Releases](https://github.com/dadakaev10-sketch/DiskScope/releases/latest)
-bereit. Ein Apple-Developer-Account ist für die Installation **nicht**
-erforderlich.
+**[DiskScope direkt als DMG herunterladen](https://github.com/dadakaev10-sketch/DiskScope/releases/latest/download/DiskScope.dmg)**
+
+Alternativ findest du die DMG und alle Versionshinweise unter
+[GitHub Releases](https://github.com/dadakaev10-sketch/DiskScope/releases/latest).
+Ein Apple-Developer-Account ist für die Installation **nicht** erforderlich.
 
 Die aktuelle Open-Source-Version ist noch nicht von Apple notarisiert. Deshalb
 zeigt macOS beim ersten Start eine Sicherheitsmeldung:
