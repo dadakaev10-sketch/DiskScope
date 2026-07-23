@@ -30,6 +30,9 @@ keine Dateinamen und löscht niemals etwas ohne deine Bestätigung.
 
 **[DiskScope direkt als DMG herunterladen](https://github.com/dadakaev10-sketch/DiskScope/releases/latest/download/DiskScope.dmg)**
 
+Kompatibel mit **macOS 12 Monterey oder neuer** sowie mit Intel- und
+Apple-Silicon-Macs.
+
 Alternativ findest du die DMG und alle Versionshinweise unter
 [GitHub Releases](https://github.com/dadakaev10-sketch/DiskScope/releases/latest).
 Ein Apple-Developer-Account ist für die Installation **nicht** erforderlich.
@@ -85,7 +88,7 @@ nicht erneut, solange App-Identität und Systemeinstellung erhalten bleiben.
 
 ## Bauen
 
-Voraussetzung sind macOS 14 oder neuer und die Apple Command Line Tools. Die
+Voraussetzung sind macOS 12 Monterey oder neuer und die Apple Command Line Tools. Die
 App wird als Universal Binary für Apple Silicon und Intel gebaut:
 
 ```sh

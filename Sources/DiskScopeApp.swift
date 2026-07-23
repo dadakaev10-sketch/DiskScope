@@ -105,9 +105,10 @@ struct ContentView: View {
     @State private var screen: Screen = .overview
 
     var body: some View {
-        NavigationSplitView {
+        HSplitView {
             SidebarView(screen: $screen)
-        } detail: {
+                .frame(minWidth: 210, idealWidth: 235, maxWidth: 280)
+
             VStack(spacing: 0) {
                 HeaderView(screen: screen)
                 Divider()
@@ -322,7 +323,6 @@ struct SidebarView: View {
             .frame(maxWidth: .infinity, alignment: .leading)
             .background(.bar)
         }
-        .navigationSplitViewColumnWidth(min: 210, ideal: 235)
     }
 
     private func locationButton(_ location: ScanLocation) -> some View {
@@ -387,19 +387,17 @@ struct FolderBrowserView: View {
             Divider()
 
             if visibleItems.isEmpty {
-                ContentUnavailableView(
+                EmptyStateView(
                     L10n.string(
                         searchText.isEmpty ? "Ordner ist leer" : "Keine Treffer",
                         language: model.language
                     ),
                     systemImage: searchText.isEmpty ? "folder" : "magnifyingglass",
-                    description: Text(
-                        L10n.string(
-                            searchText.isEmpty
-                                ? "In diesem Ordner wurden keine lesbaren Elemente gefunden."
-                                : "Passe den Suchbegriff an.",
-                            language: model.language
-                        )
+                    description: L10n.string(
+                        searchText.isEmpty
+                            ? "In diesem Ordner wurden keine lesbaren Elemente gefunden."
+                            : "Passe den Suchbegriff an.",
+                        language: model.language
                     )
                 )
                 .frame(maxWidth: .infinity, maxHeight: .infinity)
@@ -732,10 +730,10 @@ struct ApplicationsView: View {
                 }
                 .frame(maxWidth: .infinity, maxHeight: .infinity)
             } else if applications.isEmpty {
-                ContentUnavailableView(
+                EmptyStateView(
                     "Keine Apps gefunden",
                     systemImage: "square.grid.2x2",
-                    description: Text("In den Programme-Ordnern wurden keine lesbaren App-Pakete gefunden.")
+                    description: "In den Programme-Ordnern wurden keine lesbaren App-Pakete gefunden."
                 )
                 .frame(maxWidth: .infinity, maxHeight: .infinity)
             } else {
@@ -971,6 +969,38 @@ struct SidebarRow: View {
             in: RoundedRectangle(cornerRadius: 7)
         )
         .contentShape(Rectangle())
+    }
+}
+
+struct EmptyStateView: View {
+    let title: String
+    let systemImage: String
+    let description: String
+
+    init(_ title: String, systemImage: String, description: String) {
+        self.title = title
+        self.systemImage = systemImage
+        self.description = description
+    }
+
+    var body: some View {
+        VStack(spacing: 14) {
+            Image(systemName: systemImage)
+                .font(.system(size: 42, weight: .medium))
+                .foregroundStyle(.secondary)
+
+            Text(LocalizedStringKey(title))
+                .font(.title2.bold())
+                .multilineTextAlignment(.center)
+
+            Text(LocalizedStringKey(description))
+                .font(.body)
+                .foregroundStyle(.secondary)
+                .multilineTextAlignment(.center)
+                .frame(maxWidth: 520)
+        }
+        .padding(28)
+        .frame(maxWidth: .infinity, maxHeight: .infinity)
     }
 }
 
@@ -1402,7 +1432,7 @@ struct StorageBar: View {
                     .fill(Color.blue.opacity(0.2))
                     .overlay(alignment: .leading) {
                         Capsule()
-                            .fill(Color.blue.gradient)
+                            .fill(Color.blue)
                             .frame(width: proxy.size.width * fraction)
                     }
             }
@@ -1446,7 +1476,7 @@ struct LargestFilesView: View {
                                 .foregroundStyle(.secondary)
                             VStack(alignment: .leading, spacing: 2) {
                                 Text(item.name)
-                                Text(item.url.deletingLastPathComponent().path(percentEncoded: false))
+                                Text(item.url.deletingLastPathComponent().path)
                                     .font(.caption2)
                                     .foregroundStyle(.secondary)
                                     .lineLimit(1)
@@ -1543,7 +1573,7 @@ struct CleanupView: View {
                                 .foregroundStyle(item.cleanupKind?.color ?? .secondary)
                             VStack(alignment: .leading, spacing: 2) {
                                 Text(item.name)
-                                Text(item.url.path(percentEncoded: false))
+                                Text(item.url.path)
                                     .font(.caption2)
                                     .foregroundStyle(.secondary)
                                     .lineLimit(1)
@@ -1581,10 +1611,10 @@ struct CleanupView: View {
                 .padding(12)
                 .background(.bar)
             } else {
-                ContentUnavailableView(
+                EmptyStateView(
                     "Keine eindeutigen Kandidaten",
                     systemImage: "checkmark.circle",
-                    description: Text("In diesem Scan wurden keine großen Cache-, Protokoll- oder temporären Dateien erkannt.")
+                    description: "In diesem Scan wurden keine großen Cache-, Protokoll- oder temporären Dateien erkannt."
                 )
                 .frame(maxWidth: .infinity, maxHeight: .infinity)
             }
@@ -1638,10 +1668,10 @@ struct DuplicatesView: View {
                 .cardStyle()
 
                 if groups.isEmpty {
-                    ContentUnavailableView(
+                    EmptyStateView(
                         "Keine möglichen Duplikate",
                         systemImage: "checkmark.circle",
-                        description: Text("Es wurden keine Dateien ab 1 MB mit gleichem Namen gefunden.")
+                        description: "Es wurden keine Dateien ab 1 MB mit gleichem Namen gefunden."
                     )
                     .frame(maxWidth: .infinity)
                     .padding(.top, 70)
@@ -1708,7 +1738,7 @@ struct DuplicateGroupCard: View {
                 HStack(spacing: 9) {
                     Image(systemName: "folder")
                         .foregroundStyle(.secondary)
-                    Text(item.url.deletingLastPathComponent().path(percentEncoded: false))
+                    Text(item.url.deletingLastPathComponent().path)
                         .font(.caption)
                         .foregroundStyle(.secondary)
                         .lineLimit(1)

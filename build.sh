@@ -31,7 +31,7 @@ swiftc \
   -swift-version 5 \
   -parse-as-library \
   -O \
-  -target arm64-apple-macosx14.0 \
+  -target arm64-apple-macosx12.0 \
   -framework SwiftUI \
   -framework AppKit \
   -framework Combine \
@@ -42,7 +42,7 @@ swiftc \
   -swift-version 5 \
   -parse-as-library \
   -O \
-  -target x86_64-apple-macosx14.0 \
+  -target x86_64-apple-macosx12.0 \
   -framework SwiftUI \
   -framework AppKit \
   -framework Combine \
